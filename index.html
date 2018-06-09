@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Designing Quiz</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="WOW-master/css/libs/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/checkbox.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/quiz.js"></script>
+	<script src="WOW-master/dist/wow.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('input[type="radio"]').attr('required', "");
+		});
+		new WOW().init();
+	</script>
+</head>
+<body ng-app="quizApp" ng-controller="quizController">
+	<div class="container" style="margin-top: 50px">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h2 class="text-center wow fadeInDown" ng-show="showTimer == false && ended == false">Quiz time over !</h2>
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show1">
+					<p><strong>{{x.questionText}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers[0].ansText}}" ng-model="qs" changed> {{x.answers[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers[1].ansText}}" ng-model="qs" changed> {{x.answers[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers[2].ansText}}" ng-model="qs" changed> {{x.answers[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers[3].ansText}}" ng-model="qs" changed>  {{x.answers[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideFirst()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">1 of 20</h4>
+				</div>
+
+				<!-- Question 2 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show1 == false && show2 == true">
+					<p><strong>{{x.questionText2}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers2[0].ansText}}" ng-model="qs" changed> {{x.answers2[0].ansText}}
+						</div>
+						<div class="form-group">
+								<input type="radio" value="{{x.answer2[1].ansText}}" ng-model="qs" changed>  
+								 {{x.answers2[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers2[2].ansText}}" ng-model="qs" changed> {{x.answers2[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers2[3].ansText}}" ng-model="qs" changed> {{x.answers2[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideSecond()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">2 of 20</h4>
+				</div>
+
+				<!-- Question 3 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show2 == false && show3 == true">
+					<p><strong>{{x.questionText3}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers3[0].ansText}}" ng-model="qs" changed> {{x.answers3[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers3[1].ansText}}" ng-model="qs" changed>  {{x.answers3[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers3[2].ansText}}" ng-model="qs" changed> {{x.answers3[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers3[3].ansText}}" ng-model="qs" changed> {{x.answers3[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideThird()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">3 of 20</h4>
+				</div>
+
+				<!-- Question 4 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show3 == false && show4 == true">
+					<p><strong>{{x.questionText4}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers4[0].ansText}}" ng-model="qs" changed> {{x.answers4[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers4[1].ansText}}" ng-model="qs" changed>  {{x.answers4[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers4[2].ansText}}" ng-model="qs" changed> {{x.answers4[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers4[3].ansText}}" ng-model="qs" changed> {{x.answers4[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideFourth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">4 of 20</h4>
+				</div>
+
+				<!-- Question 5 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show4 == false && show5 == true">
+					<p><strong>{{x.questionText5}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers5[0].ansText}}" ng-model="qs" changed> {{x.answers5[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers5[1].ansText}}" ng-model="qs" changed>  {{x.answers5[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers5[2].ansText}}" ng-model="qs" changed> {{x.answers5[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers5[3].ansText}}" ng-model="qs" changed> {{x.answers5[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideFifth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">5 of 20</h4>
+				</div>
+
+				<!-- Question 6 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show5 == false && show6 == true">
+					<p><strong>{{x.questionText6}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers6[0].ansText}}" ng-model="qs" changed> {{x.answers6[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers6[1].ansText}}" ng-model="qs" changed>  {{x.answers6[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers6[2].ansText}}" ng-model="qs" changed> {{x.answers6[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers6[3].ansText}}" ng-model="qs" changed> {{x.answers6[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideSixth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">6 of 20</h4>
+				</div>
+
+				<!-- Question 7 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show6 == false && show7 == true">
+					<p><strong>{{x.questionText7}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers7[0].ansText}}" ng-model="qs" changed> {{x.answers7[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers7[1].ansText}}" ng-model="qs" changed>  {{x.answers7[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers7[2].ansText}}" ng-model="qs" changed> {{x.answers7[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers7[3].ansText}}" ng-model="qs" changed> {{x.answers7[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideSeventh()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">7 of 20</h4>
+				</div>
+
+				<!-- Question 8 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show7 == false && show8 == true">
+					<p><strong>{{x.questionText8}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers8[0].ansText}}" ng-model="qs" changed> {{x.answers8[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers8[1].ansText}}" ng-model="qs" changed>  {{x.answers8[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers8[2].ansText}}" ng-model="qs" changed> {{x.answers8[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers8[3].ansText}}" ng-model="qs" changed> {{x.answers8[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideEigth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">8 of 20</h4>
+				</div>
+
+				<!-- Question 9 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show8 == false && show9 == true">
+					<p><strong>{{x.questionText9}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers9[0].ansText}}" ng-model="qs" changed> {{x.answers9[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers9[1].ansText}}" ng-model="qs" changed>  {{x.answers9[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers9[2].ansText}}" ng-model="qs" changed> {{x.answers9[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers9[3].ansText}}" ng-model="qs" changed> {{x.answers9[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideNinth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">9 of 20</h4>
+				</div>
+
+				<!-- Question 10 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show9 == false && show10 == true">
+					<p><strong>{{x.questionText10}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers10[0].ansText}}" ng-model="qs" changed> {{x.answers10[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers10[1].ansText}}" ng-model="qs" changed>  {{x.answers10[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers10[2].ansText}}" ng-model="qs" changed> {{x.answers10[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers10[3].ansText}}" ng-model="qs" changed> {{x.answers10[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideTenth()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">10 of 20</h4>
+				</div>
+
+				<!-- Question 11 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show10 == false && show11 == true">
+					<p><strong>{{x.questionText11}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers11[0].ansText}}" ng-model="qs" changed> {{x.answers11[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers11[1].ansText}}" ng-model="qs" changed>  {{x.answers11[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers11[2].ansText}}" ng-model="qs" changed> {{x.answers11[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers11[3].ansText}}" ng-model="qs" changed> {{x.answers11[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideEleventh()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">11 of 20</h4>
+				</div>
+
+				<!-- Question 12 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show11 == false && show12 == true">
+					<p><strong>{{x.questionText12}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers12[0].ansText}}" ng-model="qs" changed> {{x.answers12[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers12[1].ansText}}" ng-model="qs" changed>  {{x.answers12[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers12[2].ansText}}" ng-model="qs" changed> {{x.answers12[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers12[3].ansText}}" ng-model="qs" changed> {{x.answers12[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideTwelve()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">12 of 20</h4>
+				</div>
+
+				<!-- Question 13 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show12 == false && show13 == true">
+					<p><strong>{{x.questionText13}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers13[0].ansText}}" ng-model="qs" changed> {{x.answers13[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers13[1].ansText}}" ng-model="qs" changed>  {{x.answers13[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers13[2].ansText}}" ng-model="qs" changed> {{x.answers13[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers13[3].ansText}}" ng-model="qs" changed> {{x.answers13[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideThirteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">13 of 20</h4>
+				</div>
+
+				<!-- Question 14 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show13 == false && show14 == true">
+					<p><strong>{{x.questionText14}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers14[0].ansText}}" ng-model="qs" changed> {{x.answers14[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers14[1].ansText}}" ng-model="qs" changed>  {{x.answers14[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers14[2].ansText}}" ng-model="qs" changed> {{x.answers14[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers14[3].ansText}}" ng-model="qs" changed> {{x.answers14[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideFourteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">14 of 20</h4>
+				</div>
+
+				<!-- Question 15 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show14 == false && show15 == true">
+					<p><strong>{{x.questionText15}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers15[0].ansText}}" ng-model="qs" changed> {{x.answers15[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers15[1].ansText}}" ng-model="qs" changed>  {{x.answers15[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers15[2].ansText}}" ng-model="qs" changed> {{x.answers15[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers15[3].ansText}}" ng-model="qs" changed> {{x.answers15[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideFifteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">15 of 20</h4>
+				</div>
+
+				<!-- Question 16 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show15 == false && show16 == true">
+					<p><strong>{{x.questionText16}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers16[0].ansText}}" ng-model="qs" changed> {{x.answers16[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers16[1].ansText}}" ng-model="qs" changed>  {{x.answers16[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers16[2].ansText}}" ng-model="qs" changed> {{x.answers16[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers16[3].ansText}}" ng-model="qs" changed> {{x.answers16[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideSixteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">16 of 20</h4>
+				</div>
+
+				<!-- Question 17 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show16 == false && show17 == true">
+					<p><strong>{{x.questionText17}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers17[0].ansText}}" ng-model="qs" changed> {{x.answers17[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers17[1].ansText}}" ng-model="qs" changed>  {{x.answers17[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers17[2].ansText}}" ng-model="qs" changed> {{x.answers17[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers17[3].ansText}}" ng-model="qs" changed> {{x.answers17[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideSeventeen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">17 of 20</h4>
+				</div>
+
+				<!-- Question 18 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show17 == false && show18 == true">
+					<p><strong>{{x.questionText18}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers18[0].ansText}}" ng-model="qs" changed> {{x.answers18[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers18[1].ansText}}" ng-model="qs" changed>  {{x.answers18[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers18[2].ansText}}" ng-model="qs" changed> {{x.answers18[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers18[3].ansText}}" ng-model="qs" changed> {{x.answers18[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideEighteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">18 of 20</h4>
+				</div>
+
+				<!-- Question 19 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show18 == false && show19 == true">
+					<p><strong>{{x.questionText19}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers19[0].ansText}}" ng-model="qs" changed> {{x.answers19[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers19[1].ansText}}" ng-model="qs" changed>  {{x.answers19[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers19[2].ansText}}" ng-model="qs" changed> {{x.answers19[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers19[3].ansText}}" ng-model="qs" changed> {{x.answers19[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideNineteen()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">19 of 20</h4>
+				</div>
+
+				<!-- Question 20 -->
+				<div class="well wow fadeInDown" ng-repeat="x in quizData" ng-show="show19 == false && show20 == true">
+					<p><strong>{{x.questionText20}} </strong></p>
+					<form>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers20[0].ansText}}" ng-model="qs" changed> {{x.answers20[0].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers20[1].ansText}}" ng-model="qs" changed>  {{x.answers20[1].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers20[2].ansText}}" ng-model="qs" changed> {{x.answers20[2].ansText}}
+						</div>
+						<div class="form-group">
+							<input type="radio" value="{{x.answers20[3].ansText}}" ng-model="qs" changed> {{x.answers20[3].ansText}}
+						</div>
+
+						<div class="form-group">
+							<input type="button" ng-click="hideTwenty()" class="btn btn-info btn-sm" value="Next" />
+						</div>
+					</form>
+					<h4 class="text-muted">20 of 20</h4>
+				</div>
+
+				<!-- Quiz Complete -->
+				<div class="well wow slideInLeft" ng-show="show20 == false && com == true">
+					<h1 class="text-muted text-center" style="font-family: calibri">Your quiz has been completed</h1>
+					<hr>
+					<div class="row">
+						<div class="complete">
+							<button type="button" class="btn btn-success" ng-click="completed()">Show result</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Quiz Result -->
+				<div class="well wow fadeInUp" ng-show="com == false && res == true">
+					<h2 class="text-center">Quiz results</h2>
+					<hr>
+					<ul class="list-group">
+						<li class="list-group-item">Correct answers: <strong>{{correctAnswers}}</strong></li>
+						<li class="list-group-item">Wrong answers: <strong>{{totalAnswers - correctAnswers}}</strong></li>
+						<li class="list-group-item">Percentage: <strong>{{correctAnswers * 100 / totalAnswers}} %</strong></li>
+					</ul>
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+</html>

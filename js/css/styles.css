@@ -1,0 +1,31 @@
+/*Imports from https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+body {
+	background: #F7F7F7;
+}
+.well {
+	background: #fff;
+	border-radius: 0;
+}
+form {
+	margin-top: 20px;
+	font-size: 92%;
+}
+div.complete {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+div.complete button.btn-success {
+	width: 40%;
+	margin: 10px 30%;
+	border-radius: 0;	
+}
+form input[type="radio"]+label:before {
+	outline: 0 !important;
+}
+#time {
+	font-family: 'Orbitron', sans-serif;
+}
+
